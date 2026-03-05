@@ -98,7 +98,7 @@ class TestFaultTolerance:
 
         result = scheduler.handle_station_failure(station1, stations)
         assert result is None  # no available station
-        assert len(scheduler._queue) >= 1  # task requeued
+        assert len(scheduler._queue) == 1  # task requeued
 
 
 class TestConflictResolution:
@@ -133,7 +133,7 @@ class TestTaskCompletion:
 
         assert task.status == TaskStatus.COMPLETED
         assert station.status == StationStatus.IDLE
-        assert len(scheduler._queue) >= 1  # task requeued
+        assert station.tasks_completed == 1
 
 
 class TestAuditLog:
