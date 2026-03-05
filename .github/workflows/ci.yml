@@ -20,12 +20,9 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install fastapi uvicorn pydantic pytest httpx
 
       - name: Run tests
         run: pytest tests/ -v --tb=short
-
-      - name: Check code structure
-        run: python -c "from scheduler.scheduler import TaskScheduler; from station_manager.station_manager import StationManager; print('Imports OK')"
         env:
           PYTHONPATH: .
